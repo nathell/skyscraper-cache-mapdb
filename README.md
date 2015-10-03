@@ -19,11 +19,15 @@ I’ve factored out this backend to a separate project to keep Skyscraper core d
 
 ## How?
 
+Put skyscraper-cache-mapdb in your `project.clj`, adding this to your `:dependencies`:
+
+    [skyscraper-cache-mapdb "0.1.0"]
+
 Require `skyscraper.cache.mapdb`:
 
     (ns your-app
       (:require [skyscraper :refer :all]
-                [skyscraper.cache.mapdb :as mapdb)))
+                [skyscraper.cache.mapdb :as mapdb]))
 
 Instantiate the backend:
 
