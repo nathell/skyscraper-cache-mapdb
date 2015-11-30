@@ -7,7 +7,8 @@
 (defn edn-serializer []
   (proxy [Serializer] []
     (serialize [out obj]
-      (.writeUTF out (pr-str obj)))
+      (binding [*print-length* nil *print-level* nil]
+        (.writeUTF out (pr-str obj))))
     (deserialize [in available]
       (edn/read-string (.readUTF in)))))
 
