@@ -44,3 +44,21 @@
 (defn close
   [^MapDBCache cache]
   (.close (.db cache)))
+
+(defn export-values
+  [^MapDBCache cache filename]
+  (with-open [f (io/writer filename)]
+    (binding [*print-length* nil, *print-level* nil, *out* f]
+      (doseq [entry (-> cache .values-store .entrySet)]
+        (prn [(key entry) (val entry)])))))
+
+(defn import-values
+  [^MapDBCache cache filename]
+  (with-open [f (java.io.PushbackReader. (io/reader filename))]
+    (binding [*print-length* nil, *print-level* nil]
+      (loop [entry (edn/read {:eof nil} f)]
+        (if entry
+          (do
+            (.put (.values-store cache) (first entry) (second entry))
+            (recur (edn/read {:eof nil} f)))
+          (.commit (.db cache)))))))
