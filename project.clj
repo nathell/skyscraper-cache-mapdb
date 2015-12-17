@@ -1,4 +1,4 @@
-(defproject skyscraper-cache-mapdb "0.1.1-SNAPSHOT"
+(defproject skyscraper-cache-mapdb "0.1.1"
   :description "A MapDB-based cache backend for Skyscraper."
   :license {:name "MIT", :url "https://github.com/nathell/skyscraper-cache-mapdb/blob/master/README.md#license"}
   :scm {:name "git", :url "https://github.com/nathell/skyscraper"}

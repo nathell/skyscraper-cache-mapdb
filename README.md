@@ -21,7 +21,7 @@ I’ve factored out this backend to a separate project to keep Skyscraper core d
 
 Put skyscraper-cache-mapdb in your `project.clj`, adding this to your `:dependencies`:
 
-    [skyscraper-cache-mapdb "0.1.0"]
+    [skyscraper-cache-mapdb "0.1.1"]
 
 Require `skyscraper.cache.mapdb`:
 
@@ -40,6 +40,8 @@ Then tell Skyscraper to use it, like this:
 Skyscraper sets up the backend to automatically close when you quit the JVM, but you may also close it manually:
 
     (mapdb/close cache)
+
+You can also extract data from the values store to EDN and import them back, using the `export-values` and `import-values` functions. This is useful for upgrading: MapDB format tends to introduce breaking changes between releases, and these functions can help you upgrade your caches to the new format.
 
 ## License
 
